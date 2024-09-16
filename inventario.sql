@@ -5,3 +5,4 @@ CREATE TABLE productos (
     precio REAL NOT NULL,
     existencias INTEGER NOT NULL
 );
+    

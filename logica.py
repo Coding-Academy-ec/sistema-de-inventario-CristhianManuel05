@@ -14,12 +14,16 @@ def agregar_producto(nombre, precio, existencias):
     conn.close()
 
 def actualizar_existencias(id_producto, nuevas_existencias):
-    # Función para actualizar las existencias de un producto en la base de datos
-    conn = conectar()
-    # Crear un cursor para ejecutar consultas
+    # Conectar a la base de datos
+    conexion = sqlite3.connect('inventario.db')
+    cursor = conexion.cursor()  # Obtener el cursor
+
+    # Ejecutar la consulta
     cursor.execute("UPDATE productos SET existencias = ? WHERE id = ?", (nuevas_existencias, id_producto))
-    # Confirmar los cambios
-    conn.close()
+
+    # Guardar los cambios y cerrar la conexión
+    conexion.commit()
+    conexion.close()
 
 def registrar_venta(id_producto, cantidad_vendida):
     # Función para registrar una venta y actualizar las existencias en la base de datos
